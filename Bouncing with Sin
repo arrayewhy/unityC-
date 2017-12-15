@@ -1,0 +1,23 @@
+private Transform _transform;
+
+private Vector2 startPos;
+public float amplitude = 20;
+public int frequency = 20;
+private float decreaseRate = 1;
+
+void Start () {
+  _transform = GetComponent<Transform> ();
+
+  startPos = _transform.localPosition;
+}
+  
+void Update () {
+  if (amplitude > 0) {
+    amplitude -= decreaseRate;
+    decreaseRate += 0.001f;
+
+    Vector2 tempPos = startPos;
+    tempPos.x = amplitude * Mathf.Sin (Time.time * frequency);
+    _transform.localPosition = tempPos;
+  }
+}
