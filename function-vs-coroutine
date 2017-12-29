@@ -1,0 +1,37 @@
+//////////////////////////////////////// Function Example //////////
+
+void Update () {
+  if (testMode == true) {
+    FuncTest ();
+  }
+}
+
+void FuncTest () {
+  if (counter < 2) {
+    if (Time.time > lastWriteTime + 1) {
+      counter += 1;
+      Debug.Log (counter);
+      lastWriteTime = Time.time;
+    }
+  } else {
+    testMode = false;
+    counter = 0;
+  }
+}
+
+//////////////////////////////////////// Coroutine Example //////////
+
+void Update () {
+  if (testMode == true) {
+    testMode = false;
+    StartCoroutine ("CoTest");
+  }
+}
+
+IEnumerator CoTest () {
+  int counter = 1;
+  Debug.Log (counter);
+  yield return new WaitForSeconds (1);
+  Debug.Log (counter + 1);
+  yield return null;
+}
